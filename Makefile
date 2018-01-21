@@ -69,7 +69,7 @@ LDFLAGS_MIPS = -L/home/xjz/mips_lib/jsoncpp \
 			   -L/usr/local/OpenWrt-SDK-ramips-for-redhat-i686-gcc-4.8-linaro_uClibc-0.9.33.2/staging_dir/target-mipsel_24kec+dsp_uClibc-0.9.33.2/usr/lib \
 			   -lboost_chrono -lboost_system -lpthread -lboost_thread -ldl -ljsoncpp -lsqlite3
 			   
-OBJS = $(OBJ_DIR)/main.o 
+OBJS = $(OBJ_DIR)/main.o $(OBJ_DIR)/CommonFunc.o 
 
 SmartHome-MIPS : $(OBJS)
 	$(CC_MIPS) $(CFLAGS) $(INCLUDE)  -O2 -o $(OUTPUT_NAME)  $(OBJS) #-$(LDFLAGS_MIPS)
@@ -77,6 +77,8 @@ SmartHome-MIPS : $(OBJS)
 $(OBJ_DIR)/main.o : main.cpp #-./threadfunc/ThreadFunc.hpp
 	$(CC_MIPS) $(CFLAGS) $(INCLUDE)  -c -O2 -o $@ main.cpp
 
+$(OBJ_DIR)/CommonFunc.o : ./common/CommonFunc.cpp ./common/CommonFunc.hpp
+	$(CC_MIPS) $(CFLAGS) $(INCLUDE)  -c -O2 -o $@ ./common/CommonFunc.cpp
 
 #$(OBJ_DIR)/log.o : ./log/log.cpp ./log/log.h
 #	$(CC_MIPS) $(CFLAGS) $(INCLUDE)  -c -O2 -o $@ ./log/log.cpp
