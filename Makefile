@@ -59,20 +59,15 @@ OBJ_DIR = $(shell pwd)/debug/obj/5350
 #OUTPUT_NAME = SmartHome-MIPS-r-h3c
 #OBJ_DIR = $(shell pwd)/release/obj/h3c
 
-INCLUDE = -I/home/xjz/boost_1_56_0 -I/home/xjz/mips_lib/jsoncpp/include -I/home/xjz/mips_lib/sqlite3 \
-		  -I/usr/local/OpenWrt-SDK-ramips-for-redhat-i686-gcc-4.8-linaro_uClibc-0.9.33.2/staging_dir/target-mipsel_24kec+dsp_uClibc-0.9.33.2/usr/include \
-		  -I/usr/local/OpenWrt-SDK-ramips-for-redhat-i686-gcc-4.8-linaro_uClibc-0.9.33.2/staging_dir/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2/usr/include
+INCLUDE = -I/home/tzz/boost_1_56_0
 
-LDFLAGS_MIPS = -L/home/xjz/mips_lib/jsoncpp \
-			   -L/home/xjz/mips_lib/sqlite3 \
-			   -L/home/xjz/mips_lib/boost_1_56_0/lib/staticlib \
-			   -L/usr/local/OpenWrt-SDK-ramips-for-redhat-i686-gcc-4.8-linaro_uClibc-0.9.33.2/staging_dir/target-mipsel_24kec+dsp_uClibc-0.9.33.2/usr/lib \
-			   -lboost_chrono -lboost_system -lpthread -lboost_thread -ldl -ljsoncpp -lsqlite3
+LDFLAGS_MIPS = -L/home/tzz/boost_1_56_0/lib/ \
+			   /home/tzz/boost_1_56_0/lib/libboost_system.a /home/tzz/boost_1_56_0/lib/libboost_thread.a -lpthread
 			   
 OBJS = $(OBJ_DIR)/main.o $(OBJ_DIR)/CommonFunc.o 
 
 SmartHome-MIPS : $(OBJS)
-	$(CC_MIPS) $(CFLAGS) $(INCLUDE)  -O2 -o $(OUTPUT_NAME)  $(OBJS) #-$(LDFLAGS_MIPS)
+	$(CC_MIPS) $(CFLAGS) $(INCLUDE)  -O2 -o $(OUTPUT_NAME)  $(OBJS) $(LDFLAGS_MIPS)
 
 $(OBJ_DIR)/main.o : main.cpp #-./threadfunc/ThreadFunc.hpp
 	$(CC_MIPS) $(CFLAGS) $(INCLUDE)  -c -O2 -o $@ main.cpp
