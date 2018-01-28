@@ -29,7 +29,8 @@ int main(int argc, char *argv[])
     }
     
     SignalInit();
-    
+    PlatformInit *platform = PlatformInit::instance();
+    platform->PlatFormInit();
     
     boost::thread::attributes attrs;
     attrs.set_stack_size(1024);

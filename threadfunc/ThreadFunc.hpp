@@ -11,6 +11,8 @@
 #include "../common/GlobalConfig.hpp"
 #include "../common/CommonFunc.hpp"
 
+#include "../platform/PlatformInit.hpp"
+
 
 /***********************************
 *************线程处理函数***********

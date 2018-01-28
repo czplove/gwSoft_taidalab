@@ -69,7 +69,7 @@ OBJS = $(OBJ_DIR)/main.o $(OBJ_DIR)/PlatformInit.o $(OBJ_DIR)/CommonFunc.o
 SmartHome-MIPS : $(OBJS)
 	$(CC_MIPS) $(CFLAGS) $(INCLUDE)  -O2 -o $(OUTPUT_NAME)  $(OBJS) $(LDFLAGS_MIPS)
 
-$(OBJ_DIR)/main.o : main.cpp #-./threadfunc/ThreadFunc.hpp
+$(OBJ_DIR)/main.o : main.cpp ./threadfunc/ThreadFunc.hpp
 	$(CC_MIPS) $(CFLAGS) $(INCLUDE)  -c -O2 -o $@ main.cpp
 
 $(OBJ_DIR)/PlatformInit.o : ./platform/PlatformInit.cpp ./common/GlobalConfig.hpp ./platform/PlatformInit.hpp \
