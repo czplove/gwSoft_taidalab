@@ -8,7 +8,7 @@ CC_MIPS = g++
 #CFLAGS = -D _TEST_CONNECT_
 
 #5350 debug
-CFLAGS =  -D PLATFORM_MIPS 
+CFLAGS =  -D PLATFORM_DREAMFLOWER 
 OUTPUT_NAME = SmartHome-MIPS-p
 OBJ_DIR = $(shell pwd)/debug/obj/5350
 
@@ -64,7 +64,7 @@ INCLUDE = -I/home/tzz/boost_1_56_0
 LDFLAGS_MIPS = -L/home/tzz/boost_1_56_0/lib/ \
 			   /home/tzz/boost_1_56_0/lib/libboost_system.a /home/tzz/boost_1_56_0/lib/libboost_thread.a -lpthread
 			   
-OBJS = $(OBJ_DIR)/main.o $(OBJ_DIR)/CommonFunc.o 
+OBJS = $(OBJ_DIR)/main.o $(OBJ_DIR)/PlatformInit.o $(OBJ_DIR)/CommonFunc.o 
 
 SmartHome-MIPS : $(OBJS)
 	$(CC_MIPS) $(CFLAGS) $(INCLUDE)  -O2 -o $(OUTPUT_NAME)  $(OBJS) $(LDFLAGS_MIPS)
@@ -72,6 +72,10 @@ SmartHome-MIPS : $(OBJS)
 $(OBJ_DIR)/main.o : main.cpp #-./threadfunc/ThreadFunc.hpp
 	$(CC_MIPS) $(CFLAGS) $(INCLUDE)  -c -O2 -o $@ main.cpp
 
+$(OBJ_DIR)/PlatformInit.o : ./platform/PlatformInit.cpp ./common/GlobalConfig.hpp ./platform/PlatformInit.hpp \
+	./common/CommonFunc.hpp
+	$(CC_MIPS) $(CFLAGS) $(INCLUDE)  -c -O2 -o $@ ./platform/PlatformInit.cpp
+	
 $(OBJ_DIR)/CommonFunc.o : ./common/CommonFunc.cpp ./common/CommonFunc.hpp
 	$(CC_MIPS) $(CFLAGS) $(INCLUDE)  -c -O2 -o $@ ./common/CommonFunc.cpp
 
