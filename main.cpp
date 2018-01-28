@@ -28,6 +28,9 @@ int main(int argc, char *argv[])
         return 0;
     }
     
+    //-SignalInit();
+    
+    
     boost::thread::attributes attrs;
     attrs.set_stack_size(1024);
     
@@ -45,6 +48,7 @@ int main(int argc, char *argv[])
   	
   while (GlobalConfig::QuitFlag_G) {
   	
+  	boost::this_thread::sleep(boost::posix_time::seconds(2));
   }
   return 0;
 }
